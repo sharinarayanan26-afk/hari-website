@@ -3,588 +3,484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hari Narayanan | AdTech Strategist & Marketing Intelligence</title>
-    <meta name="description" content="Personal brand of Hari Narayanan - Expert in Advertising Technology, Marketing Analytics, and AI-Driven Growth.">
+    <title>Hari Narayanan | Marketing Technology Strategist</title>
     
-    <!-- Google Fonts: Inter -->
+    <!-- Fonts & Libraries -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS for Scroll Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         :root {
-            --white: #FFFFFF;
-            --black: #000000;
-            --apple-gray: #F5F5F7;
-            --apple-blue: #0071E3;
-            --text-secondary: #86868B;
-            --nav-height: 52px;
-            --container-width: 1120px;
-            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg: #0b0b0f;
+            --text: #ffffff;
+            --text-dim: #a1a1aa;
+            --accent: linear-gradient(135deg, #0071E3 0%, #8E2DE2 100%);
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(11, 11, 15, 0.8);
         }
 
-        /* Base Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--white);
-            color: var(--black);
-            line-height: 1.5;
+            background-color: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Typography */
-        h1, h2, h3, h4 {
-            letter-spacing: -0.02em;
-            font-weight: 700;
+        canvas#three-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
         }
 
-        p {
-            color: var(--text-secondary);
-        }
-
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        /* Navigation */
+        /* --- Navigation --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            height: var(--nav-height);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: saturate(180%) blur(20px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
         }
 
-        .nav-content {
-            max-width: var(--container-width);
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
-            height: 100%;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
+            align-items: center;
+            padding: 0 2rem;
         }
 
-        .nav-logo {
-            font-weight: 600;
-            font-size: 14px;
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            background: var(--accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-decoration: none;
-            color: var(--black);
         }
 
         .nav-links {
             display: flex;
-            gap: 24px;
+            gap: 2rem;
         }
 
         .nav-links a {
-            font-size: 12px;
+            color: var(--text-dim);
             text-decoration: none;
-            color: var(--black);
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-            color: var(--apple-blue);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding-top: calc(var(--nav-height) + 100px);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: radial-gradient(circle at 80% 20%, #f0f7ff 0%, #ffffff 100%);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-content h2 {
-            font-size: 16px;
-            color: var(--apple-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 16px;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(40px, 8vw, 72px);
-            line-height: 1.05;
-            margin-bottom: 24px;
-        }
-
-        .hero-content p {
-            font-size: clamp(18px, 3vw, 24px);
-            max-width: 580px;
-            margin-bottom: 40px;
+            font-size: 0.9rem;
             font-weight: 500;
-        }
-
-        .hero-img-container {
-            position: relative;
-            aspect-ratio: 1;
-        }
-
-        .hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 40px;
-            background: var(--apple-gray);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
-        }
-
-        /* Section Layout */
-        section {
-            padding: 140px 0;
-        }
-
-        .section-tag {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--apple-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .section-title {
-            font-size: clamp(32px, 5vw, 48px);
-            margin-bottom: 60px;
-        }
-
-        /* Expertise Grid */
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .expertise-card {
-            background: var(--apple-gray);
-            padding: 48px;
-            border-radius: 32px;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            height: 320px;
-        }
-
-        .expertise-card:hover {
-            background: var(--white);
-            transform: translateY(-8px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.06);
-        }
-
-        .expertise-card h3 {
-            font-size: 24px;
-            margin-bottom: 12px;
-        }
-
-        /* Systems Section */
-        .systems-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .system-item {
-            padding: 40px;
-            border-radius: 24px;
-            background: var(--white);
-            border: 1px solid rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition);
-        }
-
-        .system-item:hover {
-            border-color: var(--apple-blue);
-            background: #fafcff;
-        }
-
-        .system-item h4 {
-            font-size: 28px;
-            font-weight: 600;
-        }
-
-        /* Technology Badges */
-        .badge-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .badge {
-            background: var(--apple-gray);
-            padding: 14px 28px;
-            border-radius: 40px;
-            font-weight: 500;
-            font-size: 16px;
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-
-        .badge:hover {
-            background: var(--white);
-            border-color: var(--apple-blue);
-            color: var(--apple-blue);
-            transform: scale(1.05);
-        }
-
-        /* Impact Area */
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
-
-        .impact-card h3 {
-            font-size: 64px;
-            color: var(--apple-blue);
-            margin-bottom: 10px;
-        }
-
-        .impact-card p {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--black);
-        }
-
-        /* About Section */
-        .about-box {
-            background: var(--black);
-            color: var(--white);
-            padding: 80px;
-            border-radius: 48px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        .about-box p {
-            color: rgba(255,255,255,0.7);
-            font-size: 20px;
-            line-height: 1.6;
-        }
-
-        .about-box h2 {
-            color: var(--white);
-            font-size: 40px;
-        }
-
-        /* Contact Section */
-        .contact-cta {
-            text-align: center;
-            padding: 100px 0;
-        }
-
-        .contact-link {
-            font-size: clamp(24px, 5vw, 56px);
-            font-weight: 800;
-            color: var(--black);
-            text-decoration: none;
-            display: block;
-            margin: 40px 0;
-            transition: var(--transition);
-        }
-
-        .contact-link:hover {
-            color: var(--apple-blue);
-            transform: scale(1.02);
-        }
-
-        .contact-details {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            font-weight: 500;
-        }
-
-        .contact-details a {
-            color: var(--text-secondary);
-            text-decoration: none;
             transition: color 0.3s;
         }
 
-        .contact-details a:hover {
-            color: var(--black);
+        .nav-links a:hover {
+            color: var(--text);
         }
 
-        /* Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        /* --- Hero Section --- */
+        section {
+            padding: 100px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
         }
 
-        /* Responsive */
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-img-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .hero-img {
+            width: 400px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .gradient-text {
+            background: var(--accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        /* --- Expertise Cards --- */
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 3rem;
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #0071E3;
+            box-shadow: 0 10px 30px rgba(0, 113, 227, 0.2);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, rgba(142, 45, 226, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        /* --- Platform Badges --- */
+        .platform-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .badge {
+            padding: 0.8rem 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .badge:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* --- Impact Section --- */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .impact-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: var(--accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Contact --- */
+        .contact-content {
+            background: var(--card-bg);
+            padding: 4rem;
+            border-radius: 32px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .contact-link {
+            display: block;
+            font-size: 2rem;
+            color: var(--text);
+            text-decoration: none;
+            margin: 2rem 0;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .contact-link:hover {
+            opacity: 0.7;
+        }
+
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        /* --- Mobile Responsive --- */
         @media (max-width: 992px) {
-            .hero-grid, .about-box {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 150px;
+            }
+            .hero-img-wrapper {
+                justify-content: center;
+            }
+            .hero-img {
+                width: 300px;
+                height: 380px;
+            }
+            .impact-grid {
                 grid-template-columns: 1fr;
             }
-            .hero-img-container {
-                max-width: 500px;
-                margin: 0 auto;
-            }
-            section {
-                padding: 80px 0;
-            }
-            .about-box {
-                padding: 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
             .nav-links {
                 display: none;
-            }
-            .expertise-card {
-                height: 280px;
-                padding: 32px;
-            }
-            .contact-details {
-                flex-direction: column;
-                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
 
+    <canvas id="three-canvas"></canvas>
+
     <nav>
-        <div class="nav-content">
-            <a href="#home" class="nav-logo">HARI NARAYANAN</a>
+        <div class="nav-container">
+            <a href="#" class="logo">HARI.N</a>
             <div class="nav-links">
                 <a href="#expertise">Expertise</a>
                 <a href="#systems">Systems</a>
                 <a href="#technology">Technology</a>
-                <a href="#impact">Impact</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content reveal">
-                    <h2>AdTech Strategist</h2>
-                    <h1>Scaling Digital Growth Through Technology.</h1>
-                    <p>Helping brands and marketing teams improve performance marketing, advertising operations, and analytics using modern AdTech platforms and intelligent automation.</p>
-                    <div class="badge-grid">
-                        <span class="badge" style="background: var(--black); color: white;">Marketing Analytics</span>
-                        <span class="badge" style="background: var(--apple-blue); color: white;">AI Practitioner</span>
-                    </div>
-                </div>
-                <div class="hero-img-container reveal">
-                    <!-- Profile image with placeholder support -->
-                    <img src="Hari-Photo.png" alt="Hari Narayanan" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop'">
-                </div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-aos="fade-up" data-aos-duration="1000">
+                Scaling <span class="gradient-text">Digital Growth</span> 
+                Through Advertising Technology.
+            </h1>
+            <p data-aos="fade-up" data-aos-delay="200">
+                Helping brands and marketing teams improve performance marketing, advertising operations, and analytics using modern AdTech platforms and intelligent automation.
+            </p>
+            <div data-aos="fade-up" data-aos-delay="400">
+                <a href="#contact" style="display: inline-block; padding: 1.2rem 2.5rem; background: var(--text); color: var(--bg); text-decoration: none; border-radius: 100px; font-weight: 700;">Get Started</a>
             </div>
+        </div>
+        <div class="hero-img-wrapper" data-aos="zoom-in-left" data-aos-duration="1200">
+            <!-- Profile Photo Placeholder -->
+            <img src="Hari-Photo.png" alt="Hari Narayanan" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=1000'">
         </div>
     </section>
 
-    <!-- Expertise -->
     <section id="expertise">
-        <div class="container">
-            <span class="section-tag reveal">What I Do</span>
-            <h2 class="section-title reveal">Strategic Expertise</h2>
-            <div class="expertise-grid">
-                <div class="expertise-card reveal">
-                    <h3>Advertising Operations Strategy</h3>
-                    <p>Optimizing cross-channel delivery and operational workflows.</p>
-                </div>
-                <div class="expertise-card reveal">
-                    <h3>Performance Marketing Systems</h3>
-                    <p>Building high-intent acquisition loops and scale engines.</p>
-                </div>
-                <div class="expertise-card reveal">
-                    <h3>Marketing Data Intelligence</h3>
-                    <p>Transforming raw signals into actionable growth insights.</p>
-                </div>
-                <div class="expertise-card reveal">
-                    <h3>AI-Driven Marketing Workflows</h3>
-                    <p>Implementing generative AI to automate creative and operations.</p>
-                </div>
-                <div class="expertise-card reveal">
-                    <h3>Marketing Technology Infrastructure</h3>
-                    <p>Architecting the full-stack marketing ecosystem.</p>
-                </div>
+        <div class="section-header" data-aos="fade-up">
+            <h2>Expertise</h2>
+            <p>Bridging the gap between technical infrastructure and growth marketing.</p>
+        </div>
+        <div class="expertise-grid">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Ad Ops Strategy</h3>
+                <p>Advanced operational frameworks for high-scale advertising delivery and management.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Performance Systems</h3>
+                <p>Building sustainable performance engines focused on attribution and ROAS.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <h3>Data Intelligence</h3>
+                <p>Advanced marketing analytics to turn raw data into strategic growth insights.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400">
+                <h3>AI Workflows</h3>
+                <p>Integrating generative AI and automation into modern marketing pipelines.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="500">
+                <h3>AdTech Infra</h3>
+                <p>Architecting the technical foundation for modern measurement and execution.</p>
             </div>
         </div>
     </section>
 
-    <!-- Systems -->
-    <section id="systems" style="background: var(--apple-gray);">
-        <div class="container">
-            <span class="section-tag reveal">Frameworks</span>
-            <h2 class="section-title reveal">Marketing Systems</h2>
-            <div class="systems-list">
-                <div class="system-item reveal">
-                    <h4>Performance Marketing Engine</h4>
-                    <span style="color: var(--apple-blue);">→</span>
-                </div>
-                <div class="system-item reveal">
-                    <h4>AI Marketing Automation System</h4>
-                    <span style="color: var(--apple-blue);">→</span>
-                </div>
-                <div class="system-item reveal">
-                    <h4>Marketing Data Intelligence Framework</h4>
-                    <span style="color: var(--apple-blue);">→</span>
-                </div>
-                <div class="system-item reveal">
-                    <h4>AdTech Infrastructure Design</h4>
-                    <span style="color: var(--apple-blue);">→</span>
-                </div>
-                <div class="system-item reveal">
-                    <h4>Growth Experimentation Systems</h4>
-                    <span style="color: var(--apple-blue);">→</span>
-                </div>
+    <section id="systems" style="background: rgba(255,255,255,0.01); border-radius: 50px;">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Marketing Systems</h2>
+            <p>Engineered frameworks for modern brand scaling.</p>
+        </div>
+        <div class="expertise-grid">
+            <div class="card" style="min-height: 200px;" data-aos="zoom-in">
+                <h4>Performance Engine</h4>
+            </div>
+            <div class="card" style="min-height: 200px;" data-aos="zoom-in">
+                <h4>AI Marketing Automation</h4>
+            </div>
+            <div class="card" style="min-height: 200px;" data-aos="zoom-in">
+                <h4>Intelligence Framework</h4>
             </div>
         </div>
     </section>
 
-    <!-- Technology -->
     <section id="technology">
-        <div class="container">
-            <span class="section-tag reveal">Stack</span>
-            <h2 class="section-title reveal">Platforms & Technology</h2>
-            <div class="badge-grid reveal">
-                <span class="badge">Meta Ads</span>
-                <span class="badge">Snapchat Ads</span>
-                <span class="badge">Spotify Ads</span>
-                <span class="badge">DV360</span>
-                <span class="badge">AppsFlyer</span>
-                <span class="badge">Data.ai</span>
-                <span class="badge">Google Analytics</span>
-                <span class="badge">SQL</span>
-                <span class="badge">Python</span>
-                <span class="badge">Excel</span>
+        <div class="section-header" data-aos="fade-up">
+            <h2>Technology Stack</h2>
+        </div>
+        <div class="platform-container">
+            <span class="badge">Meta Ads</span>
+            <span class="badge">Snapchat Ads</span>
+            <span class="badge">Spotify Ads</span>
+            <span class="badge">DV360</span>
+            <span class="badge">AppsFlyer</span>
+            <span class="badge">Data.ai</span>
+            <span class="badge">Google Analytics</span>
+            <span class="badge">SQL</span>
+            <span class="badge">Python</span>
+            <span class="badge">Excel</span>
+        </div>
+    </section>
+
+    <section id="impact">
+        <div class="impact-grid">
+            <div class="impact-item" data-aos="fade-up">
+                <h3>40%</h3>
+                <p>Efficiency Gain in Ops</p>
+            </div>
+            <div class="impact-item" data-aos="fade-up" data-aos-delay="100">
+                <h3>2X</h3>
+                <p>Analytics Accuracy</p>
+            </div>
+            <div class="impact-item" data-aos="fade-up" data-aos-delay="200">
+                <h3>AI</h3>
+                <p>Driven Automation</p>
             </div>
         </div>
     </section>
 
-    <!-- Impact -->
-    <section id="impact" style="background: #fafafa;">
-        <div class="container">
-            <span class="section-tag reveal">Results</span>
-            <h2 class="section-title reveal">Core Impact</h2>
-            <div class="impact-grid">
-                <div class="impact-card reveal">
-                    <h3>01</h3>
-                    <p>Campaign Performance Optimization</p>
-                </div>
-                <div class="impact-card reveal">
-                    <h3>02</h3>
-                    <p>Marketing Analytics Intelligence</p>
-                </div>
-                <div class="impact-card reveal">
-                    <h3>03</h3>
-                    <p>AI-Driven Marketing Automation</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About -->
     <section id="about">
-        <div class="container">
-            <div class="about-box reveal">
-                <h2>The Strategy <br>Behind the Scale</h2>
-                <div>
-                    <p>Hari Narayanan is a digital marketing and advertising technology professional with more than five years of experience across advertising operations, performance marketing, and marketing analytics.</p>
-                    <br>
-                    <p>His expertise spans modern marketing technology ecosystems including paid media platforms, attribution tools, analytics frameworks, and AI-driven marketing workflows.</p>
-                </div>
-            </div>
+        <div class="contact-content" data-aos="fade-up">
+            <h2>About Hari</h2>
+            <p style="margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Hari Narayanan is a digital marketing and advertising technology professional with more than five years of experience across advertising operations, performance marketing, and marketing analytics. His expertise spans modern marketing technology ecosystems including paid media platforms, attribution tools, analytics frameworks, and AI-driven marketing workflows.
+            </p>
         </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact">
-        <div class="container contact-cta">
-            <span class="section-tag reveal">Let's Connect</span>
-            <a href="mailto:sharinarayanan26@gmail.com" class="contact-link reveal">sharinarayanan26@gmail.com</a>
-            
-            <div class="contact-details reveal">
-                <a href="tel:+919952073776">+91 9952073776</a>
-                <a href="https://www.linkedin.com/in/hari-narayanan-a97520164/" target="_blank">LinkedIn Profile</a>
+        <div class="contact-content" data-aos="zoom-out">
+            <h2 class="gradient-text">Let's Connect</h2>
+            <a href="mailto:sharinarayanan26@gmail.com" class="contact-link">sharinarayanan26@gmail.com</a>
+            <p>+91 9952073776</p>
+            <div style="margin-top: 2rem;">
+                <a href="https://www.linkedin.com/in/hari-narayanan-a97520164/" target="_blank" style="color: #0071E3; text-decoration: none; font-weight: 600;">LinkedIn Profile →</a>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 40px 0; border-top: 1px solid var(--apple-gray); text-align: center;">
-        <p style="font-size: 12px; color: var(--text-secondary);">© 2024 Hari Narayanan. All rights reserved.</p>
+    <footer>
+        <p>&copy; 2024 Hari Narayanan. Built with precision for the future of marketing.</p>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
-        // Reveal on Scroll
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach((el) => {
-            observer.observe(el);
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
         });
 
-        // Smooth Section Fade-in on load
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '1';
+        // Three.js Background Animation
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#three-canvas'), alpha: true });
+        
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.position.setZ(30);
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        const counts = 1500;
+        const positions = new Float32Array(counts * 3);
+
+        for(let i = 0; i < counts * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 100;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particlesMaterial = new THREE.PointsMaterial({ size: 0.05, color: '#8E2DE2' });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particlesMesh.rotation.y += 0.001;
+            particlesMesh.rotation.x += 0.0005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // Simple Nav active state
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
+        // GSAP Parallax / Interaction
+        gsap.to(".hero-img", {
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                scrub: true
+            },
+            y: -50,
+            scale: 1.05
         });
     </script>
 </body>
