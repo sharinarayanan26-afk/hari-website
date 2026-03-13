@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,9 +20,11 @@ font-family:'Inter',sans-serif;
 
 body{
 background:#ffffff;
-color:#000;
+color:#111;
 line-height:1.6;
 }
+
+/* NAV */
 
 nav{
 position:fixed;
@@ -30,14 +33,14 @@ width:100%;
 height:60px;
 background:rgba(255,255,255,0.9);
 backdrop-filter:blur(20px);
+border-bottom:1px solid #eee;
 display:flex;
 align-items:center;
 justify-content:center;
-border-bottom:1px solid #eee;
 z-index:1000;
 }
 
-nav div{
+.nav-inner{
 width:1100px;
 display:flex;
 justify-content:space-between;
@@ -46,9 +49,9 @@ padding:0 20px;
 
 nav a{
 text-decoration:none;
-color:#333;
-font-size:14px;
+color:#444;
 margin-left:20px;
+font-size:14px;
 }
 
 section{
@@ -56,6 +59,8 @@ max-width:1100px;
 margin:auto;
 padding:120px 20px;
 }
+
+/* HERO */
 
 .hero{
 height:100vh;
@@ -68,7 +73,9 @@ text-align:center;
 
 .hero img{
 width:160px;
+height:160px;
 border-radius:50%;
+object-fit:cover;
 margin-bottom:30px;
 box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
@@ -83,16 +90,18 @@ margin-bottom:20px;
 
 .hero h1{
 font-size:60px;
-max-width:900px;
 line-height:1.1;
+max-width:900px;
 margin-bottom:25px;
 }
 
 .hero p{
-color:#666;
 font-size:20px;
+color:#666;
 max-width:700px;
 }
+
+/* GRID */
 
 .grid{
 display:grid;
@@ -115,8 +124,9 @@ box-shadow:0 20px 40px rgba(0,0,0,0.08);
 
 .card h3{
 margin-bottom:10px;
-font-size:22px;
 }
+
+/* BADGES */
 
 .badges{
 display:flex;
@@ -132,6 +142,12 @@ border-radius:40px;
 font-size:14px;
 }
 
+/* IMPACT */
+
+.impact{
+margin-top:40px;
+}
+
 .impact-item{
 display:flex;
 justify-content:space-between;
@@ -139,6 +155,8 @@ padding:25px 0;
 border-bottom:1px solid #eee;
 font-size:20px;
 }
+
+/* CONTACT */
 
 .contact{
 background:#000;
@@ -159,11 +177,26 @@ border-radius:30px;
 font-weight:600;
 }
 
+/* FOOTER */
+
 footer{
 text-align:center;
 padding:40px;
 font-size:13px;
 color:#777;
+}
+
+/* ANIMATIONS */
+
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:all .8s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
 }
 
 @media(max-width:768px){
@@ -184,7 +217,7 @@ font-size:18px;
 <body>
 
 <nav>
-<div>
+<div class="nav-inner">
 <strong>Hari Narayanan</strong>
 <div>
 <a href="#expertise">Expertise</a>
@@ -196,7 +229,7 @@ font-size:18px;
 </nav>
 
 
-<section class="hero">
+<section class="hero reveal">
 
 <img src="Hari-Photo.png" alt="Hari Narayanan">
 
@@ -205,11 +238,13 @@ ADVERTISING TECHNOLOGY • MARKETING INTELLIGENCE • AI-DRIVEN GROWTH
 </div>
 
 <h1>
-Helping brands scale digital growth through advertising technology and AI-driven marketing.
+Scaling Digital Growth Through
+Advertising Technology
+and AI-Driven Marketing
 </h1>
 
 <p>
-I help organizations improve performance marketing, advertising operations, and marketing analytics using modern AdTech platforms and intelligent automation.
+Helping brands and marketing teams improve performance marketing, advertising operations, and marketing analytics through modern AdTech systems.
 </p>
 
 </section>
@@ -217,28 +252,28 @@ I help organizations improve performance marketing, advertising operations, and 
 
 <section id="expertise">
 
-<h2>Strategic Expertise</h2>
+<h2 class="reveal">Strategic Expertise</h2>
 
 <div class="grid">
 
-<div class="card">
+<div class="card reveal">
 <h3>Advertising Operations</h3>
-<p>Managing cross-channel campaign execution and operational efficiency across modern ad platforms.</p>
+<p>Managing cross-channel campaign delivery and ad technology infrastructure.</p>
 </div>
 
-<div class="card">
+<div class="card reveal">
 <h3>Performance Marketing</h3>
-<p>Building scalable acquisition strategies using paid media, analytics, and testing frameworks.</p>
+<p>Building scalable acquisition strategies using paid media and experimentation.</p>
 </div>
 
-<div class="card">
+<div class="card reveal">
 <h3>Marketing Analytics</h3>
-<p>Transforming marketing data into decision intelligence through attribution and performance measurement.</p>
+<p>Turning marketing data into actionable insights using attribution frameworks.</p>
 </div>
 
-<div class="card">
+<div class="card reveal">
 <h3>AI Marketing Workflows</h3>
-<p>Implementing AI-driven marketing automation to improve campaign planning and creative production.</p>
+<p>Implementing AI tools to automate campaign planning and creative production.</p>
 </div>
 
 </div>
@@ -248,9 +283,9 @@ I help organizations improve performance marketing, advertising operations, and 
 
 <section id="platforms">
 
-<h2>Platforms & Technology</h2>
+<h2 class="reveal">Platforms & Technology</h2>
 
-<div class="badges">
+<div class="badges reveal">
 
 <span class="badge">Meta Ads</span>
 <span class="badge">Snapchat Ads</span>
@@ -270,7 +305,9 @@ I help organizations improve performance marketing, advertising operations, and 
 
 <section>
 
-<h2>Impact Areas</h2>
+<h2 class="reveal">Impact Areas</h2>
+
+<div class="impact reveal">
 
 <div class="impact-item">
 <span>Campaign Performance Optimization</span>
@@ -278,13 +315,15 @@ I help organizations improve performance marketing, advertising operations, and 
 </div>
 
 <div class="impact-item">
-<span>Marketing Analytics & Attribution</span>
-<span>Data-Driven</span>
+<span>Marketing Data Intelligence</span>
+<span>Advanced Analytics</span>
 </div>
 
 <div class="impact-item">
-<span>AI Marketing Automation</span>
-<span>Scalable</span>
+<span>AI-Driven Automation</span>
+<span>Scalable Systems</span>
+</div>
+
 </div>
 
 </section>
@@ -292,13 +331,13 @@ I help organizations improve performance marketing, advertising operations, and 
 
 <section id="about">
 
-<h2>About Hari</h2>
+<h2 class="reveal">About Hari</h2>
 
-<p style="max-width:800px;font-size:20px;color:#666;margin-top:20px;">
+<p class="reveal" style="max-width:800px;font-size:20px;color:#666;margin-top:20px;">
 Hari Narayanan is a digital marketing and advertising technology professional with more than five years of experience across advertising operations, performance marketing, and marketing analytics.
 </p>
 
-<p style="max-width:800px;font-size:20px;color:#666;margin-top:15px;">
+<p class="reveal" style="max-width:800px;font-size:20px;color:#666;margin-top:15px;">
 His expertise spans modern marketing technology ecosystems including paid media platforms, attribution tools, analytics frameworks, and AI-driven marketing workflows.
 </p>
 
@@ -307,17 +346,17 @@ His expertise spans modern marketing technology ecosystems including paid media 
 
 <section id="contact">
 
-<div class="contact">
+<div class="contact reveal">
 
 <h2>Let's Work Together</h2>
 
-<p>Open to consulting opportunities and strategic marketing collaborations.</p>
+<p>Open to consulting opportunities and marketing technology collaborations.</p>
 
 <a class="btn" href="mailto:sharinarayanan26@gmail.com">Start a Conversation</a>
 
 <p style="margin-top:30px;">
 📞 +91 9952073776<br>
-🔗 <a href="https://www.linkedin.com/in/hari-narayanan-a97520164/" style="color:white">LinkedIn Profile</a>
+🔗 <a href="https://www.linkedin.com/in/hari-narayanan-a97520164/" style="color:white">LinkedIn</a>
 </p>
 
 </div>
@@ -327,9 +366,26 @@ His expertise spans modern marketing technology ecosystems including paid media 
 
 <footer>
 
-© 2026 Hari Narayanan — AdTech & Marketing Intelligence
+© 2026 Hari Narayanan — Advertising Technology & AI Marketing
 
 </footer>
+
+
+<script>
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('active')
+}
+})
+})
+
+document.querySelectorAll('.reveal').forEach(el=>{
+observer.observe(el)
+})
+
+</script>
 
 </body>
 </html>
