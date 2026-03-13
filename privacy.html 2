@@ -1,0 +1,21 @@
+Phone: <a href="tel:+919952073776">+91 9952073776</a><br>
+      LinkedIn: <a href="https://www.linkedin.com/in/hari-narayanan-a97520164/" target="_blank" rel="noopener">linkedin.com/in/hari-narayanan</a></p>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="pf-copy">© <span id="yr"></span> Hari Narayanan. All rights reserved.</div>
+    <div class="pf-links">
+      <a href="index.html">Home</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</div>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const cur=document.getElementById('cur');
+let mx=-100,my=-100;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+</script>
+</body>
+</html>
