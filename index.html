@@ -3,484 +3,651 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hari Narayanan | Marketing Technology Strategist</title>
+    <title>Hari Narayanan | AdTech & MarTech Strategist</title>
+    <meta name="description" content="Hari Narayanan - Specialist in Advertising Technology, Marketing Analytics, and AI-Driven Growth.">
     
-    <!-- Fonts & Libraries -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- AOS for Scroll Animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
         :root {
-            --bg: #0b0b0f;
-            --text: #ffffff;
-            --text-dim: #a1a1aa;
-            --accent: linear-gradient(135deg, #0071E3 0%, #8E2DE2 100%);
-            --card-bg: rgba(255, 255, 255, 0.04);
+            --bg: #0B0B0F;
+            --text: #FFFFFF;
+            --accent: #0071E3;
+            --card-bg: #111118;
             --border: rgba(255, 255, 255, 0.08);
-            --glass: rgba(11, 11, 15, 0.8);
+            --text-dim: #A1A1AA;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text);
+            line-height: 1.5;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        canvas#three-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            pointer-events: none;
+        /* Layout Utilities */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        /* --- Navigation --- */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        h2 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 1000;
-            background: var(--glass);
+            z-index: 100;
+            background: rgba(11, 11, 15, 0.8);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
+            padding: 18px 0;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
 
         .logo {
             font-weight: 800;
-            font-size: 1.2rem;
-            background: var(--accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 18px;
             text-decoration: none;
+            color: var(--text);
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 32px;
         }
 
         .nav-links a {
-            color: var(--text-dim);
             text-decoration: none;
-            font-size: 0.9rem;
+            color: var(--text-dim);
+            font-size: 14px;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
         }
 
         .nav-links a:hover {
-            color: var(--text);
+            color: var(--accent);
         }
 
-        /* --- Hero Section --- */
-        section {
-            padding: 100px 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
+        /* Hero */
         .hero {
-            min-height: 100vh;
-            display: flex;
+            padding-top: 180px;
+            padding-bottom: 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
             align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
-        }
-
-        .hero-content {
-            flex: 1;
-        }
-
-        .hero-img-wrapper {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            position: relative;
-        }
-
-        .hero-img {
-            width: 400px;
-            height: 500px;
-            object-fit: cover;
-            border-radius: 24px;
-            border: 1px solid var(--border);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
-            font-weight: 800;
+            font-size: clamp(40px, 6vw, 68px);
             line-height: 1.1;
-            margin-bottom: 2rem;
-        }
-
-        .gradient-text {
-            background: var(--accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 20px;
             color: var(--text-dim);
-            max-width: 600px;
-            margin-bottom: 3rem;
+            max-width: 520px;
+            margin-bottom: 40px;
+            line-height: 1.6;
         }
 
-        /* --- Expertise Cards --- */
-        .section-header {
-            margin-bottom: 4rem;
-            text-align: center;
+        .cta-group {
+            display: flex;
+            gap: 16px;
         }
 
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
         }
 
-        .expertise-grid {
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .hero-image-container {
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            border-radius: 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            aspect-ratio: 1;
+            object-fit: cover;
+            /* Placeholder styling if image is missing */
+            display: block;
+            min-height: 350px;
+        }
+
+        /* Expertise Grid */
+        .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 20px;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 3rem;
-            border-radius: 24px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 40px;
+            border-radius: 20px;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            border-color: #0071E3;
-            box-shadow: 0 10px 30px rgba(0, 113, 227, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-5px);
         }
 
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at top right, rgba(142, 45, 226, 0.1), transparent);
-            pointer-events: none;
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            font-weight: 700;
         }
 
-        /* --- Platform Badges --- */
-        .platform-container {
+        .card p {
+            color: var(--text-dim);
+            font-size: 16px;
+        }
+
+        /* Systems Section (Consultant Style) */
+        .systems-wrapper {
+            background: #15151C;
+            border-radius: 32px;
+            padding: 60px;
+        }
+
+        .system-item {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .system-item:last-child {
+            border-bottom: none;
+        }
+
+        .system-item h4 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .system-tag {
+            font-size: 13px;
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 100px;
+            color: var(--text-dim);
+        }
+
+        /* Tech Stack */
+        .tech-badges {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 12px;
             justify-content: center;
         }
 
         .badge {
-            padding: 0.8rem 1.5rem;
+            padding: 12px 24px;
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 100px;
-            font-weight: 600;
-            transition: 0.3s;
+            font-size: 15px;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: default;
         }
 
         .badge:hover {
-            background: #fff;
-            color: #000;
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: scale(1.05);
         }
 
-        /* --- Impact Section --- */
-        .impact-grid {
+        /* Impact Section */
+        .impact-list {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            text-align: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
-        .impact-item h3 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            background: var(--accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .impact-item {
+            border-left: 2px solid var(--accent);
+            padding-left: 24px;
         }
 
-        /* --- Contact --- */
-        .contact-content {
-            background: var(--card-bg);
-            padding: 4rem;
-            border-radius: 32px;
+        .impact-item p {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: flex-start;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact-card {
             text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(to bottom, #111118, #0B0B0F);
+            border-radius: 40px;
             border: 1px solid var(--border);
         }
 
-        .contact-link {
-            display: block;
-            font-size: 2rem;
-            color: var(--text);
-            text-decoration: none;
-            margin: 2rem 0;
-            font-weight: 700;
-            transition: 0.3s;
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 40px;
+            flex-wrap: wrap;
         }
 
-        .contact-link:hover {
-            opacity: 0.7;
+        .contact-info-item {
+            text-decoration: none;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .contact-info-item:hover {
+            color: var(--accent);
+        }
+
+        .contact-info-item span {
+            display: block;
+            font-size: 14px;
+            color: var(--text-dim);
+            margin-bottom: 4px;
+        }
+
+        .contact-info-item strong {
+            font-size: 18px;
+            font-weight: 600;
         }
 
         footer {
-            padding: 4rem 0;
-            text-align: center;
+            padding: 40px 0;
             border-top: 1px solid var(--border);
-            font-size: 0.9rem;
+            text-align: center;
+            font-size: 14px;
             color: var(--text-dim);
         }
 
-        /* --- Mobile Responsive --- */
-        @media (max-width: 992px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 150px;
-            }
-            .hero-img-wrapper {
-                justify-content: center;
-            }
-            .hero-img {
-                width: 300px;
-                height: 380px;
-            }
-            .impact-grid {
+        /* Animations Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .hero-grid, .about-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
-            .nav-links {
-                display: none;
-            }
+            .hero { padding-top: 120px; }
+            h2 { font-size: 34px; }
+            .systems-wrapper { padding: 30px; }
+            .hero h1 { font-size: 50px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .cta-group { flex-direction: column; }
+            .contact-grid { gap: 24px; flex-direction: column; }
+            section { padding: 60px 0; }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="three-canvas"></canvas>
-
     <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">HARI.N</a>
+        <div class="container nav-content">
+            <a href="#" class="logo">HARI NARAYANAN</a>
             <div class="nav-links">
                 <a href="#expertise">Expertise</a>
                 <a href="#systems">Systems</a>
-                <a href="#technology">Technology</a>
+                <a href="#stack">Stack</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1 data-aos="fade-up" data-aos-duration="1000">
-                Scaling <span class="gradient-text">Digital Growth</span> 
-                Through Advertising Technology.
-            </h1>
-            <p data-aos="fade-up" data-aos-delay="200">
-                Helping brands and marketing teams improve performance marketing, advertising operations, and analytics using modern AdTech platforms and intelligent automation.
-            </p>
-            <div data-aos="fade-up" data-aos-delay="400">
-                <a href="#contact" style="display: inline-block; padding: 1.2rem 2.5rem; background: var(--text); color: var(--bg); text-decoration: none; border-radius: 100px; font-weight: 700;">Get Started</a>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-text-content">
+                    <span class="section-label">AdTech & MarTech Specialist</span>
+                    <h1>Scaling Digital Growth Through Advertising Technology.</h1>
+                    <p>Helping brands and marketing teams improve performance marketing, advertising operations, and marketing analytics using modern AdTech platforms and AI-driven optimization.</p>
+                    <div class="cta-group">
+                        <a href="#expertise" class="btn btn-primary">View Expertise</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                    </div>
+                </div>
+                <div class="hero-image-container">
+                    <img src="Hari-Photo.png" alt="Hari Narayanan" class="hero-image" onerror="this.style.display='none'; this.parentNode.style.background='var(--card-bg)';">
+                </div>
             </div>
-        </div>
-        <div class="hero-img-wrapper" data-aos="zoom-in-left" data-aos-duration="1200">
-            <!-- Profile Photo Placeholder -->
-            <img src="Hari-Photo.png" alt="Hari Narayanan" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=1000'">
-        </div>
-    </section>
+        </section>
 
-    <section id="expertise">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Expertise</h2>
-            <p>Bridging the gap between technical infrastructure and growth marketing.</p>
-        </div>
-        <div class="expertise-grid">
-            <div class="card" data-aos="fade-up" data-aos-delay="100">
-                <h3>Ad Ops Strategy</h3>
-                <p>Advanced operational frameworks for high-scale advertising delivery and management.</p>
+        <!-- What I Do -->
+        <section id="expertise">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Expertise</span>
+                    <h2>What I Do.</h2>
+                </div>
+                <div class="grid-cards">
+                    <div class="card reveal">
+                        <h3>Advertising Operations</h3>
+                        <p>Streamlining campaign workflows, attribution tracking, and technical setups to ensure seamless ad delivery and measurement.</p>
+                    </div>
+                    <div class="card reveal">
+                        <h3>Performance Marketing</h3>
+                        <p>Architecting acquisition systems focused on ROAS, scalable media buying, and efficient customer journey optimization.</p>
+                    </div>
+                    <div class="card reveal">
+                        <h3>Marketing Data Intelligence</h3>
+                        <p>Building analytics dashboards and data models that turn raw marketing signals into actionable business intelligence.</p>
+                    </div>
+                    <div class="card reveal">
+                        <h3>AI Marketing Automation</h3>
+                        <p>Implementing machine learning workflows and AI tools to automate repetitive tasks and optimize bidding strategies.</p>
+                    </div>
+                    <div class="card reveal">
+                        <h3>AdTech Infrastructure</h3>
+                        <p>Designing the technical foundation for marketing stacks, from pixel management to server-side tracking.</p>
+                    </div>
+                </div>
             </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <h3>Performance Systems</h3>
-                <p>Building sustainable performance engines focused on attribution and ROAS.</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="300">
-                <h3>Data Intelligence</h3>
-                <p>Advanced marketing analytics to turn raw data into strategic growth insights.</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="400">
-                <h3>AI Workflows</h3>
-                <p>Integrating generative AI and automation into modern marketing pipelines.</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="500">
-                <h3>AdTech Infra</h3>
-                <p>Architecting the technical foundation for modern measurement and execution.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="systems" style="background: rgba(255,255,255,0.01); border-radius: 50px;">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Marketing Systems</h2>
-            <p>Engineered frameworks for modern brand scaling.</p>
-        </div>
-        <div class="expertise-grid">
-            <div class="card" style="min-height: 200px;" data-aos="zoom-in">
-                <h4>Performance Engine</h4>
+        <!-- Marketing Systems -->
+        <section id="systems">
+            <div class="container">
+                <div class="systems-wrapper reveal">
+                    <div class="section-header">
+                        <span class="section-label">Methodology</span>
+                        <h2>Marketing Systems.</h2>
+                    </div>
+                    <div class="systems-list">
+                        <div class="system-item">
+                            <h4>Performance Marketing Engine</h4>
+                            <span class="system-tag">Scale & Growth</span>
+                        </div>
+                        <div class="system-item">
+                            <h4>AI Marketing Automation Workflows</h4>
+                            <span class="system-tag">Automation</span>
+                        </div>
+                        <div class="system-item">
+                            <h4>Marketing Data Intelligence Systems</h4>
+                            <span class="system-tag">Analytics</span>
+                        </div>
+                        <div class="system-item">
+                            <h4>AdTech Infrastructure Architecture</h4>
+                            <span class="system-tag">Tech Stack</span>
+                        </div>
+                        <div class="system-item">
+                            <h4>Growth Experimentation Frameworks</h4>
+                            <span class="system-tag">Strategy</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card" style="min-height: 200px;" data-aos="zoom-in">
-                <h4>AI Marketing Automation</h4>
-            </div>
-            <div class="card" style="min-height: 200px;" data-aos="zoom-in">
-                <h4>Intelligence Framework</h4>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="technology">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Technology Stack</h2>
-        </div>
-        <div class="platform-container">
-            <span class="badge">Meta Ads</span>
-            <span class="badge">Snapchat Ads</span>
-            <span class="badge">Spotify Ads</span>
-            <span class="badge">DV360</span>
-            <span class="badge">AppsFlyer</span>
-            <span class="badge">Data.ai</span>
-            <span class="badge">Google Analytics</span>
-            <span class="badge">SQL</span>
-            <span class="badge">Python</span>
-            <span class="badge">Excel</span>
-        </div>
-    </section>
+        <!-- Technology Stack -->
+        <section id="stack">
+            <div class="container">
+                <div class="section-header" style="text-align: center;">
+                    <span class="section-label">Tools & Platforms</span>
+                    <h2>Technology Stack.</h2>
+                </div>
+                <div class="tech-badges">
+                    <span class="badge reveal">Meta Ads</span>
+                    <span class="badge reveal">Snapchat Ads</span>
+                    <span class="badge reveal">Spotify Ads</span>
+                    <span class="badge reveal">DV360</span>
+                    <span class="badge reveal">AppsFlyer</span>
+                    <span class="badge reveal">Data.ai</span>
+                    <span class="badge reveal">Google Analytics</span>
+                    <span class="badge reveal">SQL</span>
+                    <span class="badge reveal">Python</span>
+                    <span class="badge reveal">Excel</span>
+                </div>
+            </div>
+        </section>
 
-    <section id="impact">
-        <div class="impact-grid">
-            <div class="impact-item" data-aos="fade-up">
-                <h3>40%</h3>
-                <p>Efficiency Gain in Ops</p>
+        <!-- Impact -->
+        <section id="impact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Outcomes</span>
+                    <h2>Impact.</h2>
+                </div>
+                <div class="impact-list">
+                    <div class="impact-item reveal">
+                        <p>Improving campaign efficiency through structured AdOps workflows and technical precision.</p>
+                    </div>
+                    <div class="impact-item reveal">
+                        <p>Turning marketing data into decision intelligence using advanced visualization and modeling.</p>
+                    </div>
+                    <div class="impact-item reveal">
+                        <p>Implementing AI-assisted campaign optimization to reduce waste and drive higher ROAS.</p>
+                    </div>
+                </div>
             </div>
-            <div class="impact-item" data-aos="fade-up" data-aos-delay="100">
-                <h3>2X</h3>
-                <p>Analytics Accuracy</p>
-            </div>
-            <div class="impact-item" data-aos="fade-up" data-aos-delay="200">
-                <h3>AI</h3>
-                <p>Driven Automation</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="about">
-        <div class="contact-content" data-aos="fade-up">
-            <h2>About Hari</h2>
-            <p style="margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                Hari Narayanan is a digital marketing and advertising technology professional with more than five years of experience across advertising operations, performance marketing, and marketing analytics. His expertise spans modern marketing technology ecosystems including paid media platforms, attribution tools, analytics frameworks, and AI-driven marketing workflows.
-            </p>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="contact-content" data-aos="zoom-out">
-            <h2 class="gradient-text">Let's Connect</h2>
-            <a href="mailto:sharinarayanan26@gmail.com" class="contact-link">sharinarayanan26@gmail.com</a>
-            <p>+91 9952073776</p>
-            <div style="margin-top: 2rem;">
-                <a href="https://www.linkedin.com/in/hari-narayanan-a97520164/" target="_blank" style="color: #0071E3; text-decoration: none; font-weight: 600;">LinkedIn Profile →</a>
+        <!-- About -->
+        <section id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="reveal">
+                        <span class="section-label">Biography</span>
+                        <h2>Behind the Strategy.</h2>
+                    </div>
+                    <div class="about-text reveal">
+                        <p>Hari Narayanan is a digital marketing and advertising technology professional with more than five years of experience across advertising operations, performance marketing, and marketing analytics.</p>
+                        <p>He works at the intersection of advertising technology, marketing data systems, and AI-driven marketing workflows.</p>
+                        <p>His focus is helping organizations build scalable marketing systems that improve campaign performance and enable data-backed decision making in a complex digital landscape.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="container">
+                <div class="contact-card reveal">
+                    <span class="section-label">Get in Touch</span>
+                    <h2>Ready to Scale Your Systems?</h2>
+                    
+                    <div class="contact-grid">
+                        <a href="mailto:sharinarayanan26@gmail.com" class="contact-info-item">
+                            <span>Email</span>
+                            <strong>sharinarayanan26@gmail.com</strong>
+                        </a>
+                        <a href="tel:+919952073776" class="contact-info-item">
+                            <span>Phone</span>
+                            <strong>+91 9952073776</strong>
+                        </a>
+                        <a href="https://www.linkedin.com/in/hari-narayanan-a97520164/" target="_blank" class="contact-info-item">
+                            <span>LinkedIn</span>
+                            <strong>Connect on LinkedIn</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2024 Hari Narayanan. Built with precision for the future of marketing.</p>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Hari Narayanan. All Rights Reserved.</p>
+        </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Load Animation
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+            tl.from(".hero-text-content h1", {
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            })
+            .from(".hero-text-content p", {
+                y: 20,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            }, "-=0.6")
+            .from(".cta-group", {
+                y: 20,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            }, "-=0.6")
+            .from(".hero-image-container", {
+                x: 40,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power3.out"
+            }, "-=1");
         });
 
-        // Three.js Background Animation
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#three-canvas'), alpha: true });
-        
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.position.setZ(30);
-
-        const particlesGeometry = new THREE.BufferGeometry();
-        const counts = 1500;
-        const positions = new Float32Array(counts * 3);
-
-        for(let i = 0; i < counts * 3; i++) {
-            positions[i] = (Math.random() - 0.5) * 100;
-        }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        const particlesMaterial = new THREE.PointsMaterial({ size: 0.05, color: '#8E2DE2' });
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-
-        function animate() {
-            requestAnimationFrame(animate);
-            particlesMesh.rotation.y += 0.001;
-            particlesMesh.rotation.x += 0.0005;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+        // Reveal animations on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                y: 40,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
         });
 
-        // GSAP Parallax / Interaction
-        gsap.to(".hero-img", {
-            scrollTrigger: {
-                trigger: ".hero",
-                start: "top top",
-                scrub: true
-            },
-            y: -50,
-            scale: 1.05
+        // Smooth Scroll for Nav Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
