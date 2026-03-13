@@ -190,15 +190,12 @@ h2.st em{font-style:italic;color:var(--gold);font-weight:400;}
 #blog{background:var(--bg);overflow:hidden;}
 #blog::before{content:'';position:absolute;top:0;right:0;width:400px;height:400px;background:radial-gradient(ellipse,rgba(201,168,76,.03) 0%,transparent 70%);pointer-events:none;}
 .blog-top{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:clamp(2.8rem,5.5vw,4.5rem);}
-.blog-view-all{display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold-border);padding:.42rem .9rem;border-radius:2px;transition:all .3s;}
-.blog-view-all:hover{background:var(--gold-dim);transform:translateX(3px);}
 .blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1.5rem;}
 article.blog-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all .4s var(--ease);position:relative;display:flex;flex-direction:column;}
 article.blog-card:hover{border-color:var(--gold-border);transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.3);}
 .blog-card-thumb{height:180px;background:linear-gradient(135deg,var(--card2),var(--bg2));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
 .blog-card-thumb-icon{width:48px;height:48px;background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gold);}
 .blog-card-thumb-bg{position:absolute;inset:0;background:conic-gradient(from 180deg at 50% 50%,rgba(201,168,76,.03) 0deg,transparent 120deg,rgba(201,168,76,.03) 240deg,transparent 360deg);pointer-events:none;}
-.blog-soon-badge{position:absolute;top:.9rem;right:.9rem;background:rgba(201,168,76,.12);border:1px solid var(--gold-border);color:var(--gold);font-family:var(--ff-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .6rem;border-radius:2px;}
 .blog-card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
 .blog-card-meta{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem;}
 .blog-tag{font-family:var(--ff-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-border);padding:.18rem .55rem;border-radius:2px;}
@@ -207,7 +204,7 @@ article.blog-card:hover{border-color:var(--gold-border);transform:translateY(-5p
 article.blog-card:hover h3{color:var(--gold);}
 .blog-card p{font-size:.83rem;color:var(--dim);line-height:1.72;flex:1;}
 .blog-card-footer{margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
-.blog-read-more{font-family:var(--ff-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .3s;}
+.blog-read-more{font-family:var(--ff-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .3s;cursor:none;}
 article.blog-card:hover .blog-read-more{color:var(--gold);}
 .blog-read-icon{transition:transform .3s;}
 article.blog-card:hover .blog-read-icon{transform:translateX(4px);}
@@ -221,6 +218,26 @@ article.blog-card:hover .blog-read-icon{transform:translateX(4px);}
 .blog-nl-input::placeholder{color:var(--muted);}
 .blog-nl-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--bg);font-family:var(--ff-body);font-size:.82rem;font-weight:600;padding:.65rem 1.3rem;border:none;border-radius:3px;cursor:none;transition:all .3s var(--ease);}
 .blog-nl-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,168,76,.25);}
+.modal-overlay{position:fixed;inset:0;background:rgba(8,8,9,.92);backdrop-filter:blur(16px);z-index:2000;opacity:0;pointer-events:none;transition:opacity .4s;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-box{position:fixed;top:50%;left:50%;transform:translate(-50%,-48%);width:min(780px,94vw);max-height:86vh;background:var(--card);border:1px solid var(--gold-border);border-radius:12px;z-index:2001;overflow-y:auto;opacity:0;transition:all .4s var(--ease);padding:3rem clamp(1.5rem,5vw,3.5rem);}
+.modal-overlay.open .modal-box{transform:translate(-50%,-50%);opacity:1;}
+.modal-close{position:absolute;top:1.2rem;right:1.2rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:none;color:var(--dim);transition:all .3s;}
+.modal-close:hover{background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold);}
+.modal-eyebrow{font-family:var(--ff-mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.modal-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);}
+.modal-title{font-family:var(--ff-head);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:1rem;}
+.modal-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+.modal-tag{font-family:var(--ff-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-border);padding:.2rem .6rem;border-radius:2px;}
+.modal-date,.modal-rt{font-family:var(--ff-mono);font-size:.65rem;color:var(--muted);}
+.modal-body h2{font-family:var(--ff-head);font-size:1.25rem;font-weight:600;color:var(--white);margin:2rem 0 .8rem;padding-left:.8rem;border-left:2px solid var(--gold);}
+.modal-body p{font-size:.93rem;color:var(--dim);line-height:1.85;margin-bottom:1.1rem;}
+.modal-body ul{margin:.4rem 0 1.2rem 1.2rem;}
+.modal-body ul li{font-size:.92rem;color:var(--dim);line-height:1.78;margin-bottom:.45rem;}
+.modal-body strong{color:var(--off);font-weight:500;}
+.modal-body .callout{background:var(--card2);border:1px solid var(--gold-border);border-radius:6px;padding:1.2rem 1.4rem;margin:1.5rem 0;}
+.modal-body .callout p{margin-bottom:0;color:var(--off);}
+.modal-body code{font-family:var(--ff-mono);font-size:.8rem;background:rgba(255,255,255,.06);padding:.15rem .45rem;border-radius:3px;color:var(--gold);}
 #contact{background:var(--bg2);overflow:hidden;}
 #contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 50%,rgba(201,168,76,.03) 0%,transparent 70%);pointer-events:none;}
 .ct-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:start;}
@@ -309,6 +326,15 @@ footer{background:var(--bg);padding:3rem clamp(1.5rem,6vw,5rem) 1.5rem;}
 <div id="cur"></div>
 <div id="cur-r"></div>
 
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" id="modalClose" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>
+    </button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
 <nav id="nav">
   <a href="#home" class="n-logo"><span class="n-logo-dot"></span>Hari Narayanan</a>
   <ul class="n-links" id="nLinks">
@@ -355,7 +381,7 @@ footer{background:var(--bg);padding:3rem clamp(1.5rem,6vw,5rem) 1.5rem;}
       <div class="fchip c2"><span class="fchip-dot"></span>Performance · Analytics</div>
       <div class="fchip c3"><span class="fchip-dot"></span>AI · Automation</div>
       <div class="photo-wrap">
-        <img src="Hari-Photo.png" alt="Hari Narayanan AdTech Strategist">
+        <img src="Hari-Photo.png" alt="Hari Narayanan AdTech Strategist" onerror="this.style.display='none'">
         <div class="photo-overlay"></div>
         <div class="photo-namecard">
           <div><div class="pn-name">Hari Narayanan</div><div class="pn-role">AdTech Strategist</div></div>
@@ -520,90 +546,60 @@ footer{background:var(--bg);padding:3rem clamp(1.5rem,6vw,5rem) 1.5rem;}
 <div class="divider"></div>
 
 <section id="blog">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "Hari Narayanan — AdTech Insights",
-    "description": "Insights on AdTech, performance marketing, AI automation, and marketing analytics.",
-    "url": "https://harinarayanan.com/#blog",
-    "author": {"@type":"Person","name":"Hari Narayanan"},
-    "blogPost": [
-      {"@type":"BlogPosting","headline":"How AI is Reshaping Performance Marketing in 2025","description":"Exploring how machine learning and automation tools are transforming bidding, targeting, and creative testing in modern ad campaigns.","author":{"@type":"Person","name":"Hari Narayanan"},"datePublished":"2025-03-01"},
-      {"@type":"BlogPosting","headline":"Building a Clean AdTech Stack: Pixel Setup Best Practices","description":"A practical guide to implementing a reliable, scalable pixel and tag infrastructure that powers accurate attribution.","author":{"@type":"Person","name":"Hari Narayanan"},"datePublished":"2025-02-15"},
-      {"@type":"BlogPosting","headline":"N8N for Marketers: Automating Repetitive Campaign Tasks","description":"How to use N8N to automate reporting, budget alerts, and campaign management tasks without writing complex code.","author":{"@type":"Person","name":"Hari Narayanan"},"datePublished":"2025-02-01"}
-    ]
-  }
-  </script>
-
   <div class="blog-top">
     <div class="sec-hd rv" style="margin-bottom:0;">
       <div class="eyebrow">Insights &amp; Writing</div>
       <h2 class="st">AdTech <em>Blog</em></h2>
       <p class="sd">Deep dives into advertising technology, performance marketing, and AI-driven growth strategies.</p>
     </div>
-    <a href="#blog" class="blog-view-all rv">All Articles <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M7 2l5 5-5 5"/></svg></a>
   </div>
-
   <div class="blog-grid">
-    <article class="blog-card rv d1" itemscope itemtype="https://schema.org/BlogPosting">
-      <meta itemprop="author" content="Hari Narayanan">
-      <meta itemprop="datePublished" content="2025-03-01">
+    <article class="blog-card rv d1">
       <div class="blog-card-thumb">
         <div class="blog-card-thumb-bg"></div>
         <div class="blog-card-thumb-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
-        <span class="blog-soon-badge">Coming Soon</span>
       </div>
       <div class="blog-card-body">
         <div class="blog-card-meta"><span class="blog-tag">AI &amp; Automation</span><span class="blog-date">Mar 2025</span></div>
-        <h3 itemprop="headline">How AI is Reshaping Performance Marketing in 2025</h3>
-        <p itemprop="description">Exploring how machine learning and automation tools are transforming bidding strategies, audience targeting, and creative testing in modern ad campaigns across Meta, Google, and DV360.</p>
+        <h3>How AI is Reshaping Performance Marketing in 2025</h3>
+        <p>Machine learning and automation tools are transforming bidding strategies, audience targeting, and creative testing across Meta, Google, and DV360.</p>
         <div class="blog-card-footer">
-          <a href="#blog" class="blog-read-more">Read Article <svg class="blog-read-icon" width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M7 2l5 5-5 5"/></svg></a>
+          <a class="blog-read-more" onclick="openPost('post1')">Read Article <svg class="blog-read-icon" width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M7 2l5 5-5 5"/></svg></a>
           <span class="blog-read-time">8 min read</span>
         </div>
       </div>
     </article>
-
-    <article class="blog-card rv d2" itemscope itemtype="https://schema.org/BlogPosting">
-      <meta itemprop="author" content="Hari Narayanan">
-      <meta itemprop="datePublished" content="2025-02-15">
+    <article class="blog-card rv d2">
       <div class="blog-card-thumb">
         <div class="blog-card-thumb-bg"></div>
         <div class="blog-card-thumb-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <span class="blog-soon-badge">Coming Soon</span>
       </div>
       <div class="blog-card-body">
         <div class="blog-card-meta"><span class="blog-tag">AdTech Ops</span><span class="blog-date">Feb 2025</span></div>
-        <h3 itemprop="headline">Building a Clean AdTech Stack: Pixel Setup Best Practices</h3>
-        <p itemprop="description">A practical guide to implementing a reliable, scalable pixel and tag infrastructure that powers accurate attribution, clean data, and confidence in your campaign reporting.</p>
+        <h3>Building a Clean AdTech Stack: Pixel Setup Best Practices</h3>
+        <p>A practical guide to implementing a reliable, scalable pixel and tag infrastructure that powers accurate attribution and clean campaign reporting.</p>
         <div class="blog-card-footer">
-          <a href="#blog" class="blog-read-more">Read Article <svg class="blog-read-icon" width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M7 2l5 5-5 5"/></svg></a>
+          <a class="blog-read-more" onclick="openPost('post2')">Read Article <svg class="blog-read-icon" width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M7 2l5 5-5 5"/></svg></a>
           <span class="blog-read-time">6 min read</span>
         </div>
       </div>
     </article>
-
-    <article class="blog-card rv d3" itemscope itemtype="https://schema.org/BlogPosting">
-      <meta itemprop="author" content="Hari Narayanan">
-      <meta itemprop="datePublished" content="2025-02-01">
+    <article class="blog-card rv d3">
       <div class="blog-card-thumb">
         <div class="blog-card-thumb-bg"></div>
         <div class="blog-card-thumb-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <span class="blog-soon-badge">Coming Soon</span>
       </div>
       <div class="blog-card-body">
         <div class="blog-card-meta"><span class="blog-tag">Automation</span><span class="blog-date">Feb 2025</span></div>
-        <h3 itemprop="headline">N8N for Marketers: Automating Repetitive Campaign Tasks</h3>
-        <p itemprop="description">How to use N8N workflows to automate reporting pulls, budget pacing alerts, and campaign status updates — without writing a single line of complex code.</p>
+        <h3>N8N for Marketers: Automating Repetitive Campaign Tasks</h3>
+        <p>How to use N8N workflows to automate reporting pulls, budget pacing alerts, and campaign status updates — without writing complex code.</p>
         <div class="blog-card-footer">
-          <a href="#blog" class="blog-read-more">Read Article <svg class="blog-read-icon" width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M7 2l5 5-5 5"/></svg></a>
+          <a class="blog-read-more" onclick="openPost('post3')">Read Article <svg class="blog-read-icon" width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M7 2l5 5-5 5"/></svg></a>
           <span class="blog-read-time">10 min read</span>
         </div>
       </div>
     </article>
   </div>
-
   <div class="blog-newsletter rv">
     <div class="blog-nl-text">
       <h3>Stay Updated on AdTech Insights</h3>
@@ -644,18 +640,11 @@ footer{background:var(--bg);padding:3rem clamp(1.5rem,6vw,5rem) 1.5rem;}
         </a>
       </div>
     </div>
-
-    <!--
-    ══════════════════════════════════════════
-    EMAIL SETUP — 2 MINUTES, FREE
-    1. Go to formspree.io → sign up free
-    2. Click New Form → copy your Form ID
-    3. Replace YOUR_FORMSPREE_ID below
-    ══════════════════════════════════════════
-    -->
-    <form class="ct-form rvr" id="contactForm"
-          action="https://formspree.io/f/YOUR_FORMSPREE_ID"
-          method="POST">
+    <form class="ct-form rvr" id="contactForm">
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+      <input type="hidden" name="subject" value="New message from harinarayanan.com">
+      <input type="hidden" name="from_name" value="Hari Narayanan Website">
+      <input type="checkbox" name="botcheck" style="display:none">
       <div class="cf-title">Send a Message</div>
       <div class="cf-sub">Replies within 24 hours.</div>
       <div class="f-row">
@@ -663,10 +652,8 @@ footer{background:var(--bg);padding:3rem clamp(1.5rem,6vw,5rem) 1.5rem;}
         <div class="fg"><label class="fl" for="lname">Last Name</label><input id="lname" name="last_name" type="text" class="fi" placeholder="Your last name"></div>
       </div>
       <div class="fg"><label class="fl" for="femail">Your Email</label><input id="femail" name="email" type="email" class="fi" placeholder="you@company.com" required></div>
-      <div class="fg"><label class="fl" for="fsubject">Subject</label><input id="fsubject" name="subject" type="text" class="fi" placeholder="AdTech consultation, partnership..."></div>
+      <div class="fg"><label class="fl" for="fsubject">Subject</label><input id="fsubject" name="subject_line" type="text" class="fi" placeholder="AdTech consultation, partnership..."></div>
       <div class="fg"><label class="fl" for="fmessage">Message</label><textarea id="fmessage" name="message" class="fta" placeholder="Tell me about your project, goals, and timeline..." required></textarea></div>
-      <input type="text" name="_gotcha" style="display:none">
-      <input type="hidden" name="_subject" value="New message from harinarayanan.com">
       <button type="submit" class="fsub" id="submitBtn">Send Message →</button>
       <div id="fb" class="form-msg"></div>
     </form>
@@ -681,20 +668,13 @@ footer{background:var(--bg);padding:3rem clamp(1.5rem,6vw,5rem) 1.5rem;}
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Navigation</div>
-      <a href="#home">Home</a>
-      <a href="#expertise">Expertise</a>
-      <a href="#technology">Technology</a>
-      <a href="#impact">Impact</a>
-      <a href="#blog">Blog</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#home">Home</a><a href="#expertise">Expertise</a><a href="#technology">Technology</a>
+      <a href="#impact">Impact</a><a href="#blog">Blog</a><a href="#about">About</a><a href="#contact">Contact</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Services</div>
-      <a href="#expertise">Advertising Operations</a>
-      <a href="#expertise">Performance Marketing</a>
-      <a href="#expertise">Marketing Analytics</a>
-      <a href="#expertise">AI Automation</a>
+      <a href="#expertise">Advertising Operations</a><a href="#expertise">Performance Marketing</a>
+      <a href="#expertise">Marketing Analytics</a><a href="#expertise">AI Automation</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Connect</div>
@@ -733,50 +713,167 @@ ham.addEventListener('click',()=>{
   s[2].style.transform=o?'translateY(-6.5px) rotate(-45deg)':'';
 });
 nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nl.classList.remove('open');ham.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='';});}));
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});
-});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -35px 0px'});
 document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>obs.observe(el));
 document.getElementById('yr').textContent=new Date().getFullYear();
 document.querySelectorAll('.tbadge').forEach((b,i)=>{b.style.transitionDelay=(i*25)+'ms';});
-const form=document.getElementById('contactForm');
-const btn=document.getElementById('submitBtn');
-const fb=document.getElementById('fb');
+
+const form=document.getElementById('contactForm'),btn=document.getElementById('submitBtn'),fb=document.getElementById('fb');
 form.addEventListener('submit',async function(e){
   e.preventDefault();
-  if(form.getAttribute('action').includes('YOUR_FORMSPREE_ID')){
+  const key=form.querySelector('[name="access_key"]').value;
+  if(!key||key==='YOUR_WEB3FORMS_ACCESS_KEY'){
     fb.className='form-msg err';
-    fb.textContent='⚠ Setup needed: go to formspree.io, create a free form, and replace YOUR_FORMSPREE_ID in the code.';
+    fb.textContent='⚠ Setup needed: visit web3forms.com, enter your email, copy your free Access Key, and replace YOUR_WEB3FORMS_ACCESS_KEY in the code.';
     return;
   }
-  btn.textContent='Sending...';btn.disabled=true;
-  fb.className='form-msg';fb.textContent='';
+  btn.textContent='Sending...';btn.disabled=true;fb.className='form-msg';fb.textContent='';
   try{
-    const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
-    if(res.ok){
-      fb.className='form-msg ok';
-      fb.textContent='✓ Message sent! I will get back to you within 24 hours.';
-      form.reset();btn.textContent='Message Sent ✓';
-    }else{
-      const data=await res.json();
-      throw new Error(data.errors?data.errors.map(e=>e.message).join(', '):'Server error');
-    }
-  }catch(err){
-    fb.className='form-msg err';
-    fb.textContent='⚠ '+err.message+'. Try emailing directly: sharinarayanan26@gmail.com';
-    btn.textContent='Send Message →';btn.disabled=false;
-  }
+    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(form)))});
+    const data=await res.json();
+    if(data.success){fb.className='form-msg ok';fb.textContent='✓ Message sent! I will get back to you within 24 hours.';form.reset();btn.textContent='Message Sent ✓';}
+    else{throw new Error(data.message||'Submission failed');}
+  }catch(err){fb.className='form-msg err';fb.textContent='⚠ '+err.message+'. Try emailing: sharinarayanan26@gmail.com';btn.textContent='Send Message →';btn.disabled=false;}
 });
+
 function nlSubscribe(){
-  const el=document.getElementById('nl-email');
-  const v=el.value.trim();
+  const el=document.getElementById('nl-email'),v=el.value.trim();
   if(!v||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){el.style.borderColor='rgba(239,68,68,.5)';return;}
   el.style.borderColor='rgba(34,197,94,.5)';el.value='';
-  const b=el.nextElementSibling;
-  b.textContent='Subscribed ✓';b.style.background='linear-gradient(135deg,#16a34a,#22c55e)';
+  const b=el.nextElementSibling;b.textContent='Subscribed ✓';b.style.background='linear-gradient(135deg,#16a34a,#22c55e)';
   setTimeout(()=>{b.textContent='Subscribe →';b.style.background='';el.style.borderColor='';},3000);
 }
+
+const posts={
+  post1:{tag:'AI & Automation',date:'March 2025',rt:'8 min read',title:'How AI is Reshaping Performance Marketing in 2025',body:`
+    <p>The advertising landscape in 2025 looks dramatically different from just two years ago. Machine learning is no longer a "future capability" buried in platform documentation — it is now the default operating mode for campaign delivery across Meta, Google, and DV360. For performance marketers, this shift demands a new mental model.</p>
+    <h2>The End of Manual Bidding Supremacy</h2>
+    <p>For years, experienced media buyers prided themselves on their manual bid adjustments — the early morning tweaks, the device-level CPC modifications, the dayparting schedules that required deep platform knowledge to execute well. That edge is rapidly shrinking.</p>
+    <p>Google's Performance Max and Meta's Advantage+ campaigns now outperform manual structures in the majority of direct-response use cases. Advertisers who embraced automated bidding saw significant improvements in cost per acquisition. The reason is simple: algorithms process signals at a scale and speed no human can replicate.</p>
+    <div class="callout"><p>The role of the marketer has shifted from <em>bid operator</em> to <em>signal architect</em>. Your job is now to feed the algorithm the richest possible data — not to outmaneuver it.</p></div>
+    <h2>What AI Does Well (and Where It Fails)</h2>
+    <p>AI-driven campaign systems excel at three things: real-time bidding optimisation, audience expansion, and creative rotation. They process millions of auction signals per second and adjust bids at the individual impression level.</p>
+    <p>However, AI consistently struggles in the following situations:</p>
+    <ul>
+      <li><strong>New account cold starts</strong> — without historical conversion data, the algorithm has nothing to learn from and will often waste budget in the exploration phase.</li>
+      <li><strong>Low-volume conversion events</strong> — if you're optimising for purchases that happen fewer than 50 times per week, the model is starved of signal and performance becomes erratic.</li>
+      <li><strong>Brand safety and contextual nuance</strong> — AI placement decisions are probabilistic, not qualitative. A human eye still catches inappropriate adjacencies that automated tools miss.</li>
+      <li><strong>Competitive positioning</strong> — algorithms optimise for your KPIs, not against your competitors. Strategic market-share thinking requires human judgment.</li>
+    </ul>
+    <h2>Creative Testing Has Been Transformed</h2>
+    <p>Perhaps the most significant practical change is in creative testing methodology. The traditional A/B test is being replaced by multi-armed bandit approaches managed by the platform itself.</p>
+    <p>Meta's Dynamic Creative Optimisation (DCO) and Google's Responsive Search Ads (RSA) now assemble and test creative combinations in real time. In practice, this means a campaign brief now specifies: 5–8 headlines, 3–4 descriptions, 4–6 images or video clips, 2–3 CTAs. The algorithm handles the rest — testing hundreds of combinations to surface the highest-performing permutations automatically.</p>
+    <h2>The New Skill Stack for AI-Era Marketers</h2>
+    <p>The practical implication is that the skill set of a great performance marketer in 2020 is only partially relevant today. The new competencies that matter are:</p>
+    <ul>
+      <li><strong>Data infrastructure</strong> — understanding server-side tracking, the Conversions API, and first-party data enrichment.</li>
+      <li><strong>Audience strategy</strong> — defining the seed audiences and customer lists that teach the algorithm where to find high-value users.</li>
+      <li><strong>Creative strategy</strong> — designing for modularity, not monolithic campaigns.</li>
+      <li><strong>Automation literacy</strong> — using tools like N8N and scripting to build reporting and alerting systems.</li>
+      <li><strong>Measurement sophistication</strong> — understanding incrementality testing, media mix modelling, and the limitations of last-touch attribution.</li>
+    </ul>
+    <h2>Practical Next Steps</h2>
+    <p>If you are still running primarily manual campaigns, the migration path is clear but requires careful execution. Start by auditing your conversion event setup — the quality of your signals is the single biggest variable in AI campaign performance. Then consolidate your campaign structures to give algorithms more data per campaign rather than spreading budget thin across many ad sets.</p>
+    <p>The marketers winning today are not those who resisted AI — they are those who learned to work with it, feeding it better data and cleaner signals than their competitors.</p>
+  `},
+  post2:{tag:'AdTech Ops',date:'February 2025',rt:'6 min read',title:'Building a Clean AdTech Stack: Pixel Setup Best Practices',body:`
+    <p>A broken pixel is the single most expensive mistake in digital advertising. It silently corrupts attribution data, starves bidding algorithms of the signals they need, and makes campaign optimisation built on faulty foundations. Yet pixel and tag infrastructure remains one of the most neglected areas of AdTech operations — typically set up once and rarely audited.</p>
+    <h2>Why Most Pixel Setups Are Broken</h2>
+    <p>The majority of pixel issues fall into four categories:</p>
+    <ul>
+      <li><strong>Duplicate firing</strong> — the same event fires multiple times per user action, artificially inflating conversion counts and corrupting ROAS calculations.</li>
+      <li><strong>Missing event parameters</strong> — pixels fire but without the value, currency, or product ID data that platforms need for value-based bidding and dynamic ads.</li>
+      <li><strong>Broken on key pages</strong> — the pixel loads on the homepage but fails silently on the checkout confirmation page — exactly where the most valuable events occur.</li>
+      <li><strong>Browser blocking</strong> — Safari's ITP and ad blockers are blocking 15–40% of browser-side pixel events on most websites, creating systematic under-reporting.</li>
+    </ul>
+    <h2>The Case for Server-Side Tracking</h2>
+    <p>The most important architectural shift in measurement is the move from browser-side pixels to server-side event sending via the Conversions API (CAPI). Instead of relying on JavaScript executing in the user's browser — where it can be blocked, delayed, or corrupted — server-side tracking sends event data directly from your web server to the platform's API.</p>
+    <div class="callout"><p>Server-side tracking via CAPI typically recovers <strong>15–35% of previously untracked conversions</strong>, significantly improving algorithm performance and reported ROAS accuracy.</p></div>
+    <p>Implementing CAPI correctly requires:</p>
+    <ul>
+      <li>A server environment capable of making outbound API calls.</li>
+      <li>A hashing function to anonymise personal data (email, phone) before sending.</li>
+      <li>Event deduplication logic to prevent double-counting when browser pixel and server events both fire for the same user action.</li>
+      <li>The <code>event_id</code> parameter to link browser and server events, enabling accurate deduplication at the platform level.</li>
+    </ul>
+    <h2>Google Tag Manager: The Right Way</h2>
+    <p>Google Tag Manager is the standard container for managing browser-side tags — but it is commonly misconfigured. The key principles for a clean GTM setup are:</p>
+    <ul>
+      <li><strong>Use a data layer</strong> — never fire tags based on DOM element clicks or URL patterns. Push structured event data to the data layer and trigger tags from that.</li>
+      <li><strong>Name events consistently</strong> — use a clear naming convention (<code>purchase_complete</code>, not <code>thank_you_page</code>) and document it.</li>
+      <li><strong>Implement trigger exceptions</strong> — always add filters to prevent tags firing in development and staging environments.</li>
+      <li><strong>Preview and debug before publishing</strong> — GTM's preview mode shows you exactly which tags fired and why for every page view. Use it before any deployment.</li>
+    </ul>
+    <h2>Audit Checklist</h2>
+    <p>Before launching any significant campaign, run through this verification checklist:</p>
+    <ul>
+      <li>Use Meta's Pixel Helper and Google Tag Assistant to verify tags fire correctly on all key pages.</li>
+      <li>Test a real transaction and verify it appears in the platform's event manager within 30 minutes.</li>
+      <li>Check that event parameters (value, currency, content_ids) are populated correctly.</li>
+      <li>Verify deduplication is working by checking the match rate in Meta's Events Manager (aim for above 75%).</li>
+      <li>Confirm the pixel is blocked on dev/staging environments.</li>
+      <li>Review the last 30 days of event data for anomalous spikes or drops that may indicate duplicate firing.</li>
+    </ul>
+    <p>A clean AdTech stack is not a one-time achievement — it is a maintenance discipline. Schedule monthly audits and treat any unexplained changes in event volume as an investigation priority.</p>
+  `},
+  post3:{tag:'Automation',date:'February 2025',rt:'10 min read',title:'N8N for Marketers: Automating Repetitive Campaign Tasks',body:`
+    <p>Every performance marketer has a list of tasks they do on autopilot: the Monday morning spend check, the weekly ROAS report, the email to the client when a campaign goes over budget. These tasks are low-value, time-consuming, and entirely automatable. N8N is the tool that eliminates them.</p>
+    <p>N8N is an open-source workflow automation platform — think Zapier, but without the per-task pricing, with far more flexibility, and with the ability to run on your own server.</p>
+    <h2>What N8N Actually Is</h2>
+    <p>N8N operates on a visual workflow builder — you connect "nodes" that represent triggers, data transformations, and actions. A workflow might look like: <em>every morning at 8am → pull campaign data from Meta API → check if any campaign's CPA exceeded target → if yes, send a Slack message with the details and pause the campaign.</em></p>
+    <p>The key advantages over simpler tools like Zapier:</p>
+    <ul>
+      <li>Custom code execution (JavaScript/Python) within workflows for complex data transformation.</li>
+      <li>Native API connections to hundreds of platforms, including Meta Ads, Google Ads, Google Sheets, Slack, Gmail, and AppsFlyer.</li>
+      <li>Conditional logic and looping for workflows that need to handle variable data structures.</li>
+      <li>Self-hosting — your workflow data never passes through a third-party server, which matters for client data compliance.</li>
+    </ul>
+    <h2>Workflow 1: Automated Daily Performance Digest</h2>
+    <p>The most universally useful automation for a performance marketer is a daily performance email that arrives before you sit down at your desk:</p>
+    <ul>
+      <li><strong>Trigger</strong>: Schedule node set to 7:30am every weekday.</li>
+      <li><strong>Data pull</strong>: HTTP Request node calling the Meta Marketing API to fetch yesterday's spend, impressions, clicks, and conversions per campaign. A separate node does the same for Google Ads.</li>
+      <li><strong>Calculation</strong>: A Code node calculates CPA, ROAS, and CTR for each campaign and compares them against targets defined in a Google Sheet.</li>
+      <li><strong>Formatting</strong>: An HTML template node assembles a clean email with a summary table, colour-coded by performance vs. target.</li>
+      <li><strong>Send</strong>: Gmail node sends the formatted email to your inbox and your client's inbox.</li>
+    </ul>
+    <p>Once built, this workflow runs every morning without intervention. The typical time saving is 30–45 minutes per day.</p>
+    <h2>Workflow 2: Budget Pacing Alerts</h2>
+    <p>Budget overruns are preventable but common. This workflow monitors budget pacing in real time:</p>
+    <ul>
+      <li><strong>Trigger</strong>: Schedule node running every 2 hours during business hours.</li>
+      <li><strong>Data pull</strong>: Fetch current spend and remaining budget for all active campaigns via the ad platform API.</li>
+      <li><strong>Pacing check</strong>: Calculate the expected spend based on time elapsed in the month. If actual spend exceeds 115% of the expected pacing, flag the campaign.</li>
+      <li><strong>Alert</strong>: Slack node sends a message to a dedicated #budget-alerts channel with campaign name, current spend, budget, and a direct link to the campaign manager.</li>
+      <li><strong>Optional action</strong>: Add a step that automatically reduces the daily budget cap by 20% if spend pacing exceeds 130% — a circuit breaker that requires no human intervention.</li>
+    </ul>
+    <div class="callout"><p>The automated budget circuit-breaker has saved client accounts from significant overruns on more than one occasion — particularly during unexpected viral moments that spike delivery unexpectedly.</p></div>
+    <h2>Workflow 3: Weekly Client Report Assembly</h2>
+    <p>Building weekly reports manually is one of the most time-consuming tasks in agency work. This workflow automates 80% of it:</p>
+    <ul>
+      <li>Pull 7-day performance data from all relevant platforms via their APIs.</li>
+      <li>Write the aggregated data to a Google Sheet that serves as the report data source.</li>
+      <li>Use the Google Slides API to populate a pre-designed slide template with the current week's numbers, replacing placeholder text with actual metrics.</li>
+      <li>Send the completed slide deck to the client via Gmail with a standardised subject line and message.</li>
+    </ul>
+    <p>The first build takes about 3–4 hours. After that, the report arrives in the client's inbox automatically, every Friday at 5pm, with no manual involvement.</p>
+    <h2>Getting Started with N8N</h2>
+    <p>The fastest way to get started is N8N Cloud (n8n.io), which offers a free tier and requires no server setup. For production use with client data, self-hosting on a VPS (DigitalOcean, Hetzner, or Render.com) is the better option — it costs around $6–12/month and keeps your data private.</p>
+    <p>The return on investment is immediate. Every hour spent building an N8N workflow pays back in hours of manual work eliminated — often within the first week.</p>
+  `}
+};
+
+const overlay=document.getElementById('modalOverlay'),modalContent=document.getElementById('modalContent');
+function openPost(id){
+  const p=posts[id];if(!p)return;
+  modalContent.innerHTML=`<div class="modal-eyebrow">${p.tag}</div><div class="modal-title">${p.title}</div><div class="modal-meta"><span class="modal-tag">${p.tag}</span><span class="modal-date">${p.date}</span><span class="modal-rt">${p.rt}</span></div><div class="modal-body">${p.body}</div>`;
+  overlay.classList.add('open');document.body.style.overflow='hidden';document.getElementById('modalBox').scrollTop=0;
+}
+document.getElementById('modalClose').addEventListener('click',closeModal);
+overlay.addEventListener('click',function(e){if(e.target===overlay)closeModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+function closeModal(){overlay.classList.remove('open');document.body.style.overflow='';}
 </script>
 </body>
 </html>
