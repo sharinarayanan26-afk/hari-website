@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hari Narayanan | Advertising Technology & AI Growth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --black: #000000;
+            --apple-gray: #F5F5F7;
+            --apple-blue: #0071E3;
+            --text-gray: #86868B;
+            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 22px;
+        }
+
+        .nav-container a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .nav-container a:hover {
+            opacity: 1;
+            color: var(--apple-blue);
+        }
+
+        /* --- Global Layout --- */
+        section {
+            padding: 120px 22px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 48px;
+        }
+
+        .hero-tagline {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--apple-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: var(--text-gray);
+            max-width: 700px;
+            font-weight: 500;
+        }
+
+        .hero-img {
+            width: 120px;
+            height: 120px;
+            background: var(--apple-gray);
+            border-radius: 50%;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* --- Expertise Cards --- */
+        .bg-gray { background-color: var(--apple-gray); max-width: 100%; }
+        
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* --- Platforms --- */
+        .platform-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .badge {
+            padding: 12px 24px;
+            background: var(--apple-gray);
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .badge:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* --- Impact/Insights (Modern List) --- */
+        .impact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .impact-item h4 { font-size: 24px; font-weight: 600; }
+        .impact-item span { color: var(--apple-blue); font-weight: 600; }
+
+        /* --- About --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 20px;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        /* --- Contact --- */
+        .contact-card {
+            background: var(--black);
+            color: var(--white);
+            padding: 80px 40px;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        .contact-card h2 { color: var(--white); margin-bottom: 20px; }
+        
+        .btn {
+            display: inline-block;
+            background: var(--apple-blue);
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-links {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .contact-links a {
+            color: var(--white);
+            opacity: 0.7;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            h2 { font-size: 32px; }
+            .hero h1 { font-size: 42px; }
+            .hero p { font-size: 18px; }
+            .about-content { grid-template-columns: 1fr; }
+            .nav-container { display: none; } /* Simplified for demo */
+            .impact-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" style="font-weight: 600; opacity: 1;">Hari Narayanan</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#platforms">Technology</a>
+            <a href="#impact">Impact</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="reveal">
+            <div class="hero-img">
+                <!-- SVG User Icon as Placeholder -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <p class="hero-tagline">Advertising Technology • Marketing Intelligence • AI-Driven Growth</p>
+            <h1>Helping brands scale digital growth.</h1>
+            <p>Through advertising technology, marketing analytics, and AI-driven optimization.</p>
+        </div>
+    </section>
+
+    <div class="bg-gray">
+        <section id="expertise">
+            <h2 class="reveal">Strategic Expertise.</h2>
+            <div class="expertise-grid">
+                <div class="card reveal">
+                    <h3>Advertising Operations</h3>
+                    <p>Strategic management of ad delivery systems and cross-channel operational efficiency.</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Performance Systems</h3>
+                    <p>Building robust frameworks for scalable performance marketing and customer acquisition.</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Data Intelligence</h3>
+                    <p>Turning raw marketing data into actionable growth strategies using advanced analytics.</p>
+                </div>
+                <div class="card reveal">
+                    <h3>AI Workflows</h3>
+                    <p>Integrating AI-driven automation into marketing departments to enhance productivity.</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Tech Infrastructure</h3>
+                    <p>Architecting the modern marketing stack from attribution to data visualization.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="platforms">
+        <h2 class="reveal">Platforms & Technology.</h2>
+        <div class="platform-container reveal">
+            <span class="badge">Meta Ads</span>
+            <span class="badge">Snapchat Ads</span>
+            <span class="badge">Spotify Ads</span>
+            <span class="badge">DV360</span>
+            <span class="badge">AppsFlyer</span>
+            <span class="badge">Data.ai</span>
+            <span class="badge">Google Analytics</span>
+            <span class="badge">SQL</span>
+            <span class="badge">Python</span>
+            <span class="badge">Excel</span>
+        </div>
+    </section>
+
+    <div class="bg-gray">
+        <section id="impact">
+            <h2 class="reveal">Impact Areas.</h2>
+            <div class="reveal">
+                <div class="impact-item">
+                    <h4>Media Efficiency</h4>
+                    <span>+40% Optimization</span>
+                </div>
+                <div class="impact-item">
+                    <h4>Data Attribution</h4>
+                    <span>100% Transparency</span>
+                </div>
+                <div class="impact-item">
+                    <h4>Automation</h4>
+                    <span>AI-Driven Scalability</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="about">
+        <div class="about-content">
+            <div class="reveal">
+                <h2 style="text-align: left; margin-bottom: 20px;">About Hari.</h2>
+                <div class="about-text">
+                    <p>Hari Narayanan is a digital marketing and advertising technology professional with more than five years of experience working across performance marketing, advertising operations, and marketing analytics.</p>
+                    <p>His expertise spans paid media platforms, analytics tools, attribution systems, and AI-driven marketing workflows.</p>
+                </div>
+            </div>
+            <div class="reveal card" style="background: var(--apple-gray); height: 400px; display: flex; align-items: center; justify-content: center;">
+                <p style="color: var(--text-gray)">[ Professional Portrait ]</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-card reveal">
+            <h2>Ready to scale?</h2>
+            <p>Let's discuss how technology can drive your next phase of growth.</p>
+            <a href="mailto:sharinarayanan26@gmail.com" class="btn">Get in Touch</a>
+            
+            <div class="contact-links">
+                <a href="tel:9952073776">+91 9952073776</a>
+                <a href="https://www.linkedin.com/in/hari-narayanan-a97520164/" target="_blank">LinkedIn</a>
+                <a href="mailto:sharinarayanan26@gmail.com">Email</a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 40px 22px; text-align: center; color: var(--text-gray); font-size: 12px; border-top: 1px solid var(--apple-gray);">
+        <p>© 2024 Hari Narayanan. Designed with Apple-inspired precision.</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Simple smooth scroll adjustment for sticky nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 50,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
